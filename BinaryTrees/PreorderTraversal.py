@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 # Question:
 # Given the root of a binary tree, return the preorder traversal of its nodes' values.
