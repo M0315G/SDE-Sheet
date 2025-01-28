@@ -21,5 +21,24 @@ class Solution:
         arr.append(node.val)
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         answer = []
-        self.postorder(root, answer)
+        # Recursive
+        # self.postorder(root, answer)
+
+        # Iterative using 2 stacks
+        if not root:
+            return []
+        st1, st2 = [], []
+        st1.append(root)
+        while len(st1) != 0:
+            ele = st1[-1]
+            st1.pop(-1)
+            st2.append(ele)
+            if ele.left:
+                st1.append(ele.left)
+            if ele.right:
+                st1.append(ele.right)
+        
+        answer = []
+        for i in range(len(st2)-1, -1, -1):
+            answer.append(st2[i].val)
         return answer
