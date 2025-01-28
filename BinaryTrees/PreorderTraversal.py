@@ -22,5 +22,20 @@ class Solution:
 
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         answer = []
-        self.preorder(root, answer)
+        # Recurisve
+        # self.preorder(root, answer)
+
+        # Iterative
+        if not root:
+            return []
+        nodes = []
+        nodes.append(root)
+        while len(nodes) != 0:
+            node = nodes[-1]
+            nodes.pop(-1)
+            answer.append(node.val)
+            if node.right:
+                nodes.append(node.right)
+            if node.left:
+                nodes.append(node.left)
         return answer
