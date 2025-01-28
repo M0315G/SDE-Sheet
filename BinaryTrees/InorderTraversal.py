@@ -21,5 +21,24 @@ class Solution:
         self.inorder(node.right, arr)
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         answer = []
-        self.inorder(root, answer)
+        # Recursive
+        # self.inorder(root, answer)
+
+        # Iterative
+        if not root:
+            return []
+        stack = []
+        node = root
+        while True:
+            if node:
+                stack.append(node)
+                node = node.left
+            else:
+                curr = stack[-1]
+                stack.pop(-1)
+                answer.append(curr.val)
+                node = curr.right
+            
+            if len(stack) == 0 and not node:
+                break
         return answer
