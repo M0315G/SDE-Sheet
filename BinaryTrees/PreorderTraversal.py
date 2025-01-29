@@ -31,8 +31,7 @@ class Solution:
         nodes = []
         nodes.append(root)
         while len(nodes) != 0:
-            node = nodes[-1]
-            nodes.pop(-1)
+            node = nodes.pop(-1)
             answer.append(node.val)
             if node.right:
                 nodes.append(node.right)

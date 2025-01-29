@@ -34,8 +34,7 @@ class Solution:
                 stack.append(node)
                 node = node.left
             else:
-                curr = stack[-1]
-                stack.pop(-1)
+                curr = stack.pop(-1)
                 answer.append(curr.val)
                 node = curr.right
             
