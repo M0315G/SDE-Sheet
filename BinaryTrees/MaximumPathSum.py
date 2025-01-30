@@ -7,19 +7,13 @@ from typing import Optional
 # Given the root of a binary tree, return the maximum path sum of any non-empty path.
 
 # Logic:
-# It's similar to the max height, we calculate the max value possible in left and right subtree and then check all the combinations:
-# currMax = max(
-#     left + right + node.val, # general case
-#     left + node.val, # when right is -ve
-#     right + node.val, # when left is -ve
-#     node.val, # when both are -ve
-# )
-# and finally update the global maxVal if currMax is greater. One thing to note is in case of returning the maxVal for each subtree, if both
-# left and right are -ve then returning only the value of root node is also valid.
+# It's similar to the max height, we calculate the max value possible in left and right subtree but we cap the values at 0, we don't want -ve values
+# and finally update the global maxVal if currMax is greater.
 
 # Check the case to understand more:
 # [9,6,-3,null,null,-6,2,null,null,2,null,-6,-6,-6]
-# Here in the root node of 2 which has child -6 and -6, since both of them give -ve, the value we returned was got by max(node.val, node.val + max(left, right))
+# Here in the root node of 2 which has child -6 and -6, since both of them give -ve, the value we returned was got
+# by max(node.val + max(0, 0), node.val + max(left, right)) --> considering both left and right were -ve so they turned out to be 0.
 
 # Definition for a binary tree node.
 class TreeNode:
@@ -32,27 +26,18 @@ class Solution:
     def maxSum(self, node: Optional[TreeNode], maxVal: list):
         if not node:
             return 0
-        left = self.maxSum(node.left, maxVal)
-        right = self.maxSum(node.right, maxVal)
-
-        currMax = max(
-            left + right + node.val, # general case
-            left + node.val, # when right is -ve
-            right + node.val, # when left is -ve
-            node.val, # when both are -ve
-        )
+        left = max(0, self.maxSum(node.left, maxVal))
+        right = max(0, self.maxSum(node.right, maxVal))
+        
+        currMax = left + right + node.val
         # print(f"At node: {node.val} the currMax is: {currMax}")
         # print(f"Left is: {node.left.val if node.left else 0000} with maxval as: {left}")
         # print(f"Right is: {node.right.val if node.right else 0000} with maxval as: {right}")
-        # print(f"Combinations: {left + right + node.val}, {left + node.val}, {right + node.val}, {node.val}")
-
         if currMax > maxVal[0]:
             maxVal[0] = currMax
-        return max(node.val + max(left, right), node.val)
+        return node.val + max(left, right)
 
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         maxVal = [float("-inf")]
-        val = self.maxSum(root, maxVal)
-        if val > maxVal[0]:
-            maxVal[0] = val
+        self.maxSum(root, maxVal)
         return maxVal[0]
