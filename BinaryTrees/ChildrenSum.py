@@ -1,3 +1,4 @@
+from typing import Optional
 # Question
 # Given a binary tree having n nodes. Check whether all of its nodes have a value equal to the sum of their child nodes.
 # Return 1 if all the nodes in the tree satisfy the given properties, else it returns 0. For every node, the data
@@ -36,3 +37,40 @@ class Solution:
     def isSumProperty(self, root):
         # code here
         return self.isSum(root)
+
+
+# Another variation is to convert the given BT into a BT which follows this property:
+
+class Solution:
+    def reorder(self, node: Optional[Node]):
+        if not node:
+            return
+    
+        currSum = 0
+        if node.left:
+            currSum += node.left.data
+        if node.right:
+            currSum += node.right.data
+        
+        if currSum >= node.data:
+            node.data = currSum
+        else:
+            if node.left:
+                node.left.data = currSum
+            if node.right:
+                node.right.data = currSum
+        
+        self.reorder(node.left)
+        self.reorder(node.right)
+    
+        tot = 0
+        if node.left:
+            tot += node.left.data
+        if node.right:
+            tot += node.right.data
+        if node.left or node.right:
+            node.data = tot
+    
+    def makeSumProperty(self, root):
+        # code here
+        return self.reorder(root)
