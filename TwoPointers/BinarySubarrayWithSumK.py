@@ -7,6 +7,8 @@ from typing import List
 # One of the logic is to use the same hashmap based approach.
 # A more optimized approach is to do it using the below formula:
 #       (no of subarray with sum <= k) - (no of subarray with sum <= k-1)
+#    The code for this approach can be found in SubArrayWithKDifferentIntegers.py
+# Here, I've used the hashMap approach where we store each sum and compute currSum-k counts.
 
 from collections import defaultdict
 class Solution:
