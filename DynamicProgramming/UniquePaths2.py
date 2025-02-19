@@ -35,3 +35,5 @@ class Solution:
             return 0
         dp = [[-1 for _ in range(n)] for _ in range(m)]
         return self.findAll(obstacleGrid, m-1, n-1, dp)
+
+# For 2 and 3 variation check Unique Paths, the solutions are identical except for 1 extra if to check for the obstacle.
