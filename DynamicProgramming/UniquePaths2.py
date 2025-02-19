@@ -18,14 +18,16 @@ from typing import List
 
 class Solution:
     def findAll(self, grid, i, j, dp):
+        if i > 0 and j > 0 and grid[i][j] == 1:
+            return 0
         if i == 0 and j == 0:
             return 1
         if dp[i][j] != -1:
             return dp[i][j]
         count = 0
-        if i-1 > -1 and grid[i-1][j] != 1:
+        if i-1 > -1:
             count += self.findAll(grid, i-1, j, dp)
-        if j-1 > -1 and grid[i][j-1] != 1:
+        if j-1 > -1:
             count += self.findAll(grid, i, j-1, dp)
         dp[i][j] = count
         return dp[i][j]
