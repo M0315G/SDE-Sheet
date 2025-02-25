@@ -27,3 +27,24 @@ class Solution:
     def isSubsetSum (self, arr, target):
         dp = [[-1 for _ in range(target+1)] for _ in range(len(arr)+1)]
         return self.findSubset(arr, len(arr)-1, target, dp) 
+
+
+# Doing the same using tabulation
+# We add the base cases and set the values to true and then follow the same take/not-take sitatuon for all indexes.
+
+class Solution:
+
+    def isSubsetSum (self, arr, target):
+        dp = [[False for _ in range(target+1)] for _ in range(len(arr)+1)]
+        for i in range(len(arr)):
+            dp[i][0] = True
+        dp[0][target] = True
+        for i in range(1, len(arr)):
+            for j in range(1, target+1):
+                not_take = dp[i-1][j]
+                take = False
+                if target >= arr[i]:
+                    take = arr[i][j] + dp[i-1][j-arr[i]]
+                dp[i][j] = take or not_take
+
+        return dp[len(arr)-1][target]
