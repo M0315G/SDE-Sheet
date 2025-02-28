@@ -43,8 +43,8 @@ class Solution:
             for j in range(1, target+1):
                 not_take = dp[i-1][j]
                 take = False
-                if target >= arr[i]:
-                    take = arr[i][j] + dp[i-1][j-arr[i]]
+                if j >= arr[i]:
+                    take = dp[i-1][j-arr[i]]
                 dp[i][j] = take or not_take
 
         return dp[len(arr)-1][target]
