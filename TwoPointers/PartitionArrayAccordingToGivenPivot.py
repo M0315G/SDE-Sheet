@@ -9,7 +9,7 @@ from typing import List
 # Return nums after the rearrangement
 
 # Logic:
-# We use the same low, mid and high approach as used in the "FruitsIntoBasket" problem, just this time we dont swap mid and high, rather append it in the end
+# We use the same low, mid and high approach as used in the "SortColors" problem, just this time we dont swap mid and high, rather append it in the end
 # and then pop the mid to maintain the overall order.
 
 class Solution:
