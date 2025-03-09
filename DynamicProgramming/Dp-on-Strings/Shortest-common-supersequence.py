@@ -4,7 +4,11 @@
 
 
 # Logic:
-# Yet to watch the video --> 
+# The idea here is to find the LCS first and then we do backtracking. The rules of backtracking are:
+# 1. If str1[i] == str2[j] then we move diagonally up i.e. i-1, j-1
+# 2. Else, we see where does the max value come from:
+#       --> if dp[i-1][j] > dp[i][j-1] we move i -= 1 and add str1[i-1] to the answer:: because here the string str2 remains intact
+#       --> else vice versa of this. 
 
 
 class Solution:
