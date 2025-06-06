@@ -6,6 +6,8 @@ from collections import defaultdict
 
 # Logic:
 # We use a hasmap to keep track of characters in an interesting way. See the video --> https://www.youtube.com/watch?v=WJaij9ffOIY&list=PLgUwDviBIf0q7vrFA_HEWcqRqMpCXzYAL&index=12
+# Dry run the logic against this test case: (makes it easier to understand)
+# s = "ddaaabbca" t = "abc"
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
