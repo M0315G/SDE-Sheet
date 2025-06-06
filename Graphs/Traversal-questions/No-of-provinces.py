@@ -10,6 +10,9 @@
 # We iterate over all the vertices and do dfs traversal, ideally all connected vertices will be traversed at once, so the no of time we call
 # the traversal code is our count.
 
+# Time complexity: O(N) + O(N + 2E)
+# Space complexity: O(N) + O(N)
+
 from typing import List
 
 class Solution:
